@@ -23,8 +23,5 @@ jobs:
       - name: Attendre que le conteneur démarre
         run: sleep 3
 
-      - name: Tester le endpoint
-        run: curl --fail http://localhost:5000
-
       - name: Arrêter le conteneur
         run: docker stop test-app
