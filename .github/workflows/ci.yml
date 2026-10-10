@@ -18,7 +18,7 @@ jobs:
         run: docker build -t cartedumonde-app .
 
       - name: Lancer le conteneur
-        run: docker run -d --name test-app -p 5000:5000 cartedumonde-app
+        run: docker run -p 5000:5000 cartedumonde-app
 
       - name: Attendre que le conteneur démarre
         run: sleep 3
