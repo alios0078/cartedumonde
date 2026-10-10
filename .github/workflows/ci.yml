@@ -26,4 +26,4 @@ jobs:
         run: curl --fail http://localhost:5000
 
       - name: Arrêter le conteneur
-        run: docker stop cartedumonde-app
+        run: docker stop $(docker ps -q)
