@@ -27,3 +27,24 @@ jobs:
 
       - name: Arrêter le conteneur
         run: docker stop $(docker ps -q)
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Déployer sur la VM Oracle Cloud
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.ORACLE_SSH_KEY }}
+          script: |
+            cd cartedumonde
+            git pull origin main
+            cd app
+            docker build -t cartedumonde .
+            docker stop cartedumonde || true
+            docker rm cartedumonde || true
+            docker run -d -p 5000:5000 --name cartedumonde cartedumonde
