@@ -44,7 +44,7 @@ jobs:
             cd cartedumonde
             git pull origin main
             cd app
-            docker build -t cartedumonde .
+            docker build -t cartedumonde ./app
             docker stop cartedumonde || true
             docker rm cartedumonde || true
             docker run -d --name cartedumonde --restart unless-stopped -p 5000:5000 cartedumonde
