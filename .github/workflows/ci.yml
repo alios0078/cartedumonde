@@ -47,4 +47,4 @@ jobs:
             docker build -t cartedumonde .
             docker stop cartedumonde || true
             docker rm cartedumonde || true
-            docker run -d -p 5000:5000 --name cartedumonde cartedumonde
+            docker run -p 5000:5000 cartedumonde
